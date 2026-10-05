@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="Browse your local images and videos privately. Nothing is uploaded.">
+    <meta name="theme-color" content="#090b0e">
+    <title>Aurora Gallery — Private Media Library</title>
+
+    <!-- Tokens declare cascade-layer order, so load them first. -->
+    <link rel="stylesheet" href="common/styles/tokens.css">
+    <link rel="stylesheet" href="common/styles/base.css">
+    <link rel="stylesheet" href="common/styles/components.css">
+    <link rel="stylesheet" href="common/styles/utilities.css">
+    <link rel="stylesheet" href="core/shell.css">
+    <link rel="stylesheet" href="common/elements/ui-dialog.css">
+    <link rel="stylesheet" href="domains/media/gallery-header.css">
+    <link rel="stylesheet" href="domains/media/empty-state.css">
+    <link rel="stylesheet" href="domains/media/batch-bar.css">
+    <link rel="stylesheet" href="domains/media/media-card.css">
+    <link rel="stylesheet" href="domains/media/gallery.css">
+    <link rel="stylesheet" href="domains/viewer/media-lightbox.css">
+    <link rel="stylesheet" href="domains/media/media-actions.css">
+</head>
+<body>
+    <gallery-header id="site-header"></gallery-header>
+
+    <main>
+        <empty-state id="empty"></empty-state>
+        <batch-bar id="batch"></batch-bar>
+        <gallery-grid id="grid"></gallery-grid>
+        <gallery-masonry id="masonry" hidden></gallery-masonry>
+        <gallery-list id="list" hidden></gallery-list>
+    </main>
+
+    <media-lightbox id="lightbox"></media-lightbox>
+
+    <ui-dialog id="help" heading="Keyboard shortcuts">
+        <div class="help-keys">
+            <div><span class="kbd">⌘</span> / <span class="kbd">Ctrl</span> + <span class="kbd">K</span></div><div>Focus Search</div>
+            <div><span class="kbd">←</span> / <span class="kbd">→</span></div><div>Previous / Next Item</div>
+            <div><span class="kbd">B</span></div><div>Boss Key / Toggle Blur Mode</div>
+            <div><span class="kbd">N</span></div><div>Toggle 18+ Sensitive Tag</div>
+            <div><span class="kbd">Space</span></div><div>Toggle Slideshow (Images)</div>
+            <div><span class="kbd">Z</span> / <span class="kbd">R</span></div><div>Zoom / Rotate Image</div>
+            <div><span class="kbd">F</span></div><div>Toggle Favorite</div>
+            <div><span class="kbd">I</span></div><div>Toggle Inspector Drawer</div>
+            <div><span class="kbd">D</span></div><div>Download Item</div>
+            <div><span class="kbd">Esc</span></div><div>Close Modal</div>
+        </div>
+        <button slot="footer" class="btn btn--primary" data-close>Close [Esc]</button>
+    </ui-dialog>
+
+    <script src="common/elements/bm-player.js"></script>
+    <script src="core/app.bundle.js"></script>
+</body>
+</html>

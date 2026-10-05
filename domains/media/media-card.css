@@ -1,0 +1,92 @@
+/* <media-card> grid look: 3D tilt target, overlay strip, badges, icon buttons. (View*/
+/* containers, the blur shield overlay, and the list table live in gallery.css.)*/
+@layer domain {
+    media-card { display: contents; }
+
+    .card {
+        position: relative;
+        aspect-ratio: 1/1;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        transform-style: preserve-3d;
+        transition: border-color var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-med) var(--ease-out);
+    }
+    .card.selected {
+        border-color: var(--teal);
+        box-shadow: var(--shadow-card-sel);
+    }
+    .card:hover {
+        border-color: var(--line-teal);
+    }
+    .card.blurred img, .card.blurred video {
+        filter: blur(28px) saturate(0.3) brightness(0.6);
+        transition: filter var(--dur-slow) var(--ease-out);
+    }
+    .card img, .card video {
+        width: 100%; height: 100%; object-fit: cover;
+        display: block;
+        transition: transform var(--dur-slow), filter var(--dur-slow);
+    }
+    .card:hover img, .card:hover video { transform: scale(1.05); }
+    .card-open {
+        position: absolute; inset: 0; z-index: 2;
+        width: 100%; height: 100%; padding: 0;
+        border: 0; background: transparent; cursor: pointer;
+    }
+    .card:focus-within { border-color: var(--teal); }
+    .card .sheen {
+        position: absolute; inset: 0;
+        pointer-events: none;
+        mix-blend-mode: overlay;
+        z-index: 3;
+    }
+    .card .overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, var(--overlay-top) 0%, var(--overlay-bottom) 100%);
+        opacity: 0; transition: opacity var(--dur-med);
+        display: flex; flex-direction: column; justify-content: space-between; padding: 10px;
+        z-index: 6;
+        pointer-events: none;
+    }
+    .card:hover .overlay, .card.selected .overlay, .card:focus-within .overlay { opacity: 1; }
+    .card .overlay button { pointer-events: auto; }
+    .card-top {
+        display: flex; align-items: center; justify-content: space-between; gap: 6px;
+    }
+    .card-bottom {
+        display: flex; flex-direction: column; gap: 2px;
+    }
+    .fname {
+        font-size: 11px; color: var(--white); font-weight: 600;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .fmeta {
+        font-size: 10px; color: var(--dim); display: flex; justify-content: space-between; align-items: center;
+    }
+    .check-box {
+        width: 28px; height: 28px; padding: 0; border-radius: var(--radius-sm);
+        border: 1px solid var(--line); background: var(--check-bg);
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; transition: background var(--dur-fast), border-color var(--dur-fast);
+    }
+    .card.selected .check-box {
+        background: var(--teal); border-color: var(--teal); color: var(--on-accent);
+    }
+    .check-box svg { width: 12px; height: 12px; stroke-width: 3; }
+    .masonry-open {
+        position: absolute; inset: 0; z-index: 4;
+        width: 100%; height: 100%;
+        border: 0; background: transparent; cursor: pointer;
+    }
+    .masonry-item:focus-within { outline: 2px solid var(--teal); outline-offset: 3px; }
+    .list-open {
+        padding: 0; border: 0; background: none; color: var(--text);
+        text-align: left; cursor: pointer;
+    }
+    .list-open:hover { color: var(--teal); }
+    @media (hover: none) {
+        .card .overlay { opacity: 1; }
+    }
+}

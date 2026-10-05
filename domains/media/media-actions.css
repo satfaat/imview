@@ -1,0 +1,35 @@
+@layer domain {
+    media-actions { display: inline-flex; }
+
+    .media-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    .media-action {
+        --tone-bg: color-mix(in oklab, var(--tone) 12%, transparent);
+        --tone-line: color-mix(in oklab, var(--tone) 42%, transparent);
+        display: inline-grid;
+        place-items: center;
+        min-width: 28px;
+        min-height: 28px;
+        padding: 4px;
+        border: 1px solid transparent;
+        border-radius: var(--radius-sm);
+        color: var(--dim);
+        cursor: pointer;
+        transition: color var(--dur-fast), background var(--dur-fast), border-color var(--dur-fast);
+    }
+
+    .media-action:hover,
+    .media-action[aria-pressed=true] {
+        color: var(--tone);
+        background: var(--tone-bg);
+        border-color: var(--tone-line);
+    }
+
+    .media-action svg { width: 15px; height: 15px; }
+    .media-action--sensitive { --tone: var(--danger); }
+    .media-action--favorite { --tone: var(--warning); }
+}

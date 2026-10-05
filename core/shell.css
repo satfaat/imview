@@ -1,0 +1,13 @@
+/* Shell-only styles: the boot-failure banner and the help-modal key table. Everything*/
+/* else reuses base.css primitives and the ui-dialog chrome.*/
+@layer domain {
+    .boot-error {
+        margin: 24px auto; max-width: 560px; padding: 16px 20px;
+        background: var(--panel); border: 1px solid var(--rose); border-radius: var(--radius);
+        color: var(--text); font-size: 12px; line-height: 1.6;
+    }
+    .boot-error b { color: var(--rose); }
+    .help-keys {
+        display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 11px;
+    }
+}

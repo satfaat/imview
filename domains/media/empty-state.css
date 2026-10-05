@@ -1,0 +1,5 @@
+/* <empty-state> reuses the shared .empty primitive; the element itself just disappears.*/
+@layer domain {
+    empty-state { display: contents; }
+    empty-state[hidden] { display: none; }
+}

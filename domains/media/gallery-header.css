@@ -1,0 +1,155 @@
+/* <gallery-header> has no styles of its own: brand/header layout lives in base.css and*/
+/* every control reuses the shared primitives. The element itself just disappears.*/
+@layer domain {
+    gallery-header { display: contents; }
+
+    .header-icon {
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+        min-height: 32px;
+        padding: 7px;
+    }
+
+    .header-icon svg { width: 16px; height: 16px; }
+    .privacy-toggle { width: auto; min-width: 32px; padding-inline: 8px; }
+    .privacy-toggle--active { --tone: var(--danger); }
+    .privacy-toggle--active.btn--primary { color: var(--on-accent); }
+    .privacy-toggle [data-privacy-label] { font-size: 10px; font-weight: 700; }
+
+    .filter-sensitive { --tone: var(--danger); }
+    .filter-sensitive.active { color: var(--on-accent); }
+
+    .controls > .seg { flex: 0 0 auto; }
+    .controls > .seg .seg__btn {
+        min-height: 28px;
+        padding: 5px 8px;
+        font-size: 10.5px;
+    }
+
+    .controls > select {
+        width: 104px;
+        min-width: 90px;
+        min-height: 32px;
+        padding: 5px 23px 5px 8px;
+        font-size: 10.5px;
+    }
+
+    .size-control {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        width: 58px;
+        height: 32px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface-soft);
+        color: var(--text);
+        transition: width var(--dur-med) var(--ease-out), border-color var(--dur-fast), background var(--dur-fast);
+    }
+
+    .size-control:hover,
+    .size-control:focus-within,
+    .size-control.is-open { width: 148px; border-color: var(--line-teal); background: var(--surface-hover); }
+
+    .size-control__toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        width: 56px;
+        min-width: 56px;
+        height: 30px;
+        padding: 0 7px;
+        border: 0;
+        background: transparent;
+        color: var(--dim);
+        font: 600 10px/1 var(--sans);
+        cursor: pointer;
+    }
+
+    .size-control__toggle:hover,
+    .size-control__toggle[aria-expanded=true] { color: var(--text); }
+    .size-control__toggle span { color: var(--teal); font-size: 13px; }
+    .size-control input[type=range] {
+        width: 0;
+        min-width: 0;
+        height: 3px;
+        padding: 0;
+        opacity: 0;
+        accent-color: var(--teal);
+        cursor: pointer;
+        transition: width var(--dur-med) var(--ease-out), opacity var(--dur-fast);
+    }
+
+    .size-control:hover input[type=range],
+    .size-control:focus-within input[type=range],
+    .size-control.is-open input[type=range] { width: 78px; margin-right: 9px; opacity: 1; }
+
+    .search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 36px;
+        height: 32px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        border: 1px solid transparent;
+        border-radius: var(--radius);
+        transition: width var(--dur-med) var(--ease-out), border-color var(--dur-fast), background var(--dur-fast);
+    }
+
+    .search-box.is-open {
+        width: clamp(150px, 18vw, 220px);
+        border-color: var(--line);
+        background: var(--surface-soft);
+    }
+
+    .search-toggle {
+        position: relative;
+        z-index: 1;
+        width: 32px;
+        min-width: 32px;
+        height: 30px;
+        min-height: 30px;
+        padding: 7px;
+        border: 0;
+        background: transparent;
+    }
+
+    .search-toggle svg { width: 16px; height: 16px; }
+    .search-indicator:not([hidden]) {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--teal);
+    }
+
+    .search-box input[type=search] {
+        width: 0;
+        min-width: 0;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--text);
+        opacity: 0;
+        transition: width var(--dur-med) var(--ease-out), opacity var(--dur-fast);
+    }
+
+    .search-box.is-open input[type=search] { width: calc(100% - 38px); padding-right: 8px; opacity: 1; }
+
+    @media (max-width: 700px) {
+        .controls > .seg .seg__btn { padding-inline: 7px; }
+        .search-box.is-open { width: min(190px, 46vw); }
+        .size-control.is-open { width: 138px; }
+        .size-control:hover input[type=range],
+        .size-control:focus-within input[type=range],
+        .size-control.is-open input[type=range] { width: 68px; }
+    }
+}

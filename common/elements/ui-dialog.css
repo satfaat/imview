@@ -1,0 +1,29 @@
+/* <ui-dialog> look: native <dialog> retinted with this app's tokens. Only .dlg* classes*/
+/* are owned here; the header close button reuses the shared .btn primitives.*/
+@layer components {
+    ui-dialog { display: contents; }
+
+    .dlg {
+        --dlg-w: 480px;
+        width: min(var(--dlg-w), calc(100vw - 24px));
+        max-height: min(calc(100dvh - 40px), var(--dlg-h, 900px));
+        padding: 0; margin: auto; overflow: hidden; color: var(--text);
+        background: var(--panel); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow-stage);
+        opacity: 0; translate: 0 8px; scale: 0.985;
+        transition: opacity var(--dur-med), translate var(--dur-med), scale var(--dur-med), overlay var(--dur-med) allow-discrete, display var(--dur-med) allow-discrete;
+    }
+    .dlg[open] { display: flex; flex-direction: column; opacity: 1; translate: 0 0; scale: 1; }
+    .dlg::backdrop { background: var(--veil-soft); backdrop-filter: blur(10px); transition: opacity var(--dur-med); }
+
+    ui-dialog[size=sm] .dlg { --dlg-w: 420px; }
+    ui-dialog[size=md] .dlg { --dlg-w: 560px; }
+    ui-dialog[size=lg] .dlg { --dlg-w: 820px; }
+    ui-dialog[size=xl] .dlg { --dlg-w: 1180px; }
+
+    .dlg__head { display: flex; align-items: center; gap: 12px; flex: none; padding: 0.7rem 0.9rem 0.7rem 1.1rem; background: var(--panel-2); border-bottom: 1px solid var(--line); }
+    .dlg__title { display: flex; align-items: center; gap: 0.5rem; margin: 0; min-width: 0; flex: 1; font-size: 13px; font-weight: 700; }
+    .dlg__actions { display: flex; align-items: center; gap: 8px; }
+    .dlg__body { flex: 1; min-height: 0; overflow: auto; padding: 16px 1.1rem; display: flex; flex-direction: column; gap: 12px; }
+    ui-dialog[flush] .dlg__body { padding: 0; gap: 0; }
+    .dlg__foot { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex: none; padding: 0.7rem 1.1rem; background: var(--panel-2); border-top: 1px solid var(--line); }
+}
